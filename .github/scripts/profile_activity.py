@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 PROFILE_TIME = ZoneInfo("Asia/Yekaterinburg")
 
 STATS_QUERY = """
-query($login: String!, $prs: String!, $issues: String!, $after: String) {
+query($login: String!, $prs: String!, $issues: String!, $end: DateTime!, $after: String) {
   user(login: $login) {
     name
     createdAt
@@ -21,7 +21,7 @@ query($login: String!, $prs: String!, $issues: String!, $after: String) {
     }
     repositoriesContributedTo(first: 1, privacy: PUBLIC,
       contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) { totalCount }
-    contributionsCollection {
+    contributionsCollection(to: $end) {
       totalCommitContributions
       totalPullRequestReviewContributions
     }
@@ -58,11 +58,16 @@ def graphql(query, **variables):
     return response["data"]
 
 
-def get_stats(login):
+def end_of_day(day):
+    return datetime.combine(day, time(23, 59, 59), PROFILE_TIME).isoformat()
+
+
+def get_stats(login, today):
     variables = {
         "login": login,
         "prs": f"is:pr is:public author:{login}",
         "issues": f"is:issue is:public author:{login}",
+        "end": end_of_day(today),
     }
     stats = graphql(STATS_QUERY, **variables)
     repositories = stats["user"]["repositories"]
@@ -75,15 +80,14 @@ def get_stats(login):
     return stats, stars
 
 
-def get_history(login, joined, now):
+def get_history(login, joined, today):
     days = {}
-    for year in range(joined.year, now.year + 1):
+    for year in range(joined.year, today.year + 1):
         first = max(joined, date(year, 1, 1))
-        last = min(now.date(), date(year, 12, 31))
+        last = min(today, date(year, 12, 31))
         start = datetime.combine(first, time.min, PROFILE_TIME)
-        end = min(now, datetime.combine(last, time(23, 59, 59), PROFILE_TIME))
         calendar = graphql(
-            CALENDAR_QUERY, login=login, start=start.isoformat(), end=end.isoformat()
+            CALENDAR_QUERY, login=login, start=start.isoformat(), end=end_of_day(last)
         )["user"]["contributionsCollection"]["contributionCalendar"]
         for week in calendar["weeks"]:
             for day in week["contributionDays"]:
@@ -179,7 +183,7 @@ def stats_card(login, stats, stars, updated):
         ))
     content.extend((
         '    <circle cx="450" cy="108" r="42" fill="none" stroke="#492327" stroke-width="6"/>',
-        f'    <circle cx="450" cy="108" r="42" fill="none" stroke="#f8515a" stroke-width="6" pathLength="100" stroke-dasharray="{score:.2f} 100" stroke-linecap="round" transform="rotate(-90 450 108)"/>',
+        f'    <circle cx="450" cy="108" r="42" fill="none" stroke="#f8515a" stroke-width="6" stroke-dasharray="{score * 2.63894:.2f} 264" stroke-linecap="round" transform="rotate(-90 450 108)"/>',
         f'    <text x="450" y="119" class="number" style="fill:#f0f6fc" text-anchor="middle">{grade}</text>',
         f'    <text x="24" y="198" class="detail">{updated}</text>',
     ))
@@ -230,9 +234,9 @@ def main():
     args = parser.parse_args()
 
     now = datetime.now(PROFILE_TIME)
-    stats, stars = get_stats(args.login)
+    stats, stars = get_stats(args.login, now.date())
     joined = datetime.fromisoformat(stats["user"]["createdAt"]).astimezone(PROFILE_TIME).date()
-    days = get_history(args.login, joined, now)
+    days = get_history(args.login, joined, now.date())
     updated = f"Updated {now:%Y-%m-%d %H:%M} (UTC+05:00)"
 
     args.output.mkdir(parents=True, exist_ok=True)
