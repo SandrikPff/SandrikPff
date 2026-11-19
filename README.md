@@ -20,7 +20,7 @@ I’m Sandrik. I build desktop apps and tools, with a focus on Windows interface
 | Project | Description | Links |
 | --- | --- | --- |
 | **PFF** | Windows audio control panel with separate headphone and microphone processing, a 20-band equalizer, presets, and desktop utilities. | [Source code](https://github.com/SandrikPff/PFF) · [Download](https://github.com/SandrikPff/PFF/releases/latest) |
-| **Zapret_app_Pff** | Windows desktop interface for Flowseal with ranked strategy tests, release updates, and tray autoconnect. | [Source code](https://github.com/SandrikPff/Zapret_app_Pff) · [Releases](https://github.com/SandrikPff/Zapret_app_Pff/releases) |
+| **Zapret_app_Pff** | Windows desktop interface for Flowseal with ranked strategy tests, release updates, and tray autoconnect. | [Source code](https://github.com/SandrikPff/Zapret_app_Pff) · [Download](https://github.com/SandrikPff/Zapret_app_Pff/releases/latest/download/Zapret_app_Pff.exe) |
 
 ## Technology
 
