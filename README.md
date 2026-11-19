@@ -31,9 +31,9 @@ I’m Sandrik. I build desktop apps and tools, with a focus on Windows interface
 ## GitHub activity
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/output/github-stats.svg" alt="GitHub statistics" width="560" />
+  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/refs/heads/output/github-stats.svg" alt="GitHub statistics" width="560" />
   <br />
-  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/output/github-streak.svg" alt="Contribution streak" width="560" />
+  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/refs/heads/output/github-streak.svg" alt="Contribution streak" width="560" />
 </div>
 
 <sub>Activity cards refresh every six hours via <a href="https://github.com/SandrikPff/SandrikPff/actions/workflows/snake.yml">GitHub Actions</a>.</sub>
