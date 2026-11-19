@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="192" viewBox="0 0 560 192" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub Contribution Streak</title>
+  <desc id="desc">Total contributions: 18. Current streak: 2 days. Longest streak: 2 days. Updated 2026-11-20 01:02 (UTC+05:00).</desc>
+  <style>
+    text { font-family: "Segoe UI", Arial, sans-serif; fill: #c9d1d9; }
+    .title { fill: #f8515a; font-size: 20px; font-weight: 700; }
+    .label { font-size: 14px; font-weight: 600; }
+    .value { fill: #f0f6fc; font-size: 16px; font-weight: 700; }
+    .number { fill: #58a6ff; font-size: 32px; font-weight: 700; }
+    .detail { fill: #8b949e; font-size: 11px; }
+    @keyframes reveal { from { opacity: 0; } to { opacity: 1; } }
+    .content { animation: reveal 0.45s ease-out both; }
+    @media (prefers-reduced-motion: reduce) { .content { animation: none; } }
+  </style>
+  <rect x=".5" y=".5" width="559" height="191" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <g class="content">
+    <path d="M187 20v132m186-132v132" stroke="#30363d"/>
+    <circle cx="280" cy="66" r="39" fill="none" stroke="#2f81f7" stroke-width="4"/>
+    <path d="M280 14c2 5 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 4-7 0 3 1 4 2 4 2-2 1-5 0-8Z" fill="#58a6ff" stroke="#0d1117" stroke-width="2"/>
+    <g text-anchor="middle">
+      <text x="94" y="76" class="number">18</text>
+      <text x="280" y="77" class="number" style="fill:#f0f6fc">2</text>
+      <text x="466" y="76" class="number">2</text>
+      <text x="94" y="125" class="label">Total Contributions</text>
+      <text x="280" y="125" class="label">Current Streak</text>
+      <text x="466" y="125" class="label">Longest Streak</text>
+      <text x="94" y="146" class="detail">Mar 07, 2024 – Present</text>
+      <text x="280" y="146" class="detail">Nov 19 – Nov 20, 2026</text>
+      <text x="466" y="146" class="detail">Nov 19 – Nov 20, 2026</text>
+    </g>
+    <text x="24" y="175" class="detail">Updated 2026-11-20 01:02 (UTC+05:00)</text>
+  </g>
+</svg>
