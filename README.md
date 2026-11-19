@@ -31,10 +31,12 @@ I’m Sandrik. I build desktop apps and tools, with a focus on Windows interface
 ## GitHub activity
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=SandrikPff&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=E5484D&icon_color=E5484D&text_color=c9d1d9" alt="GitHub statistics" />
+  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/output/github-stats.svg" alt="GitHub statistics" width="560" />
   <br />
-  <img src="https://github-readme-streak-stats.herokuapp.com?user=SandrikPff&theme=github-dark-blue&hide_border=true" alt="Contribution streak" />
+  <img src="https://raw.githubusercontent.com/SandrikPff/SandrikPff/output/github-streak.svg" alt="Contribution streak" width="560" />
 </div>
+
+<sub>Activity cards refresh every six hours via <a href="https://github.com/SandrikPff/SandrikPff/actions/workflows/snake.yml">GitHub Actions</a>.</sub>
 
 ### Contribution animation
 
