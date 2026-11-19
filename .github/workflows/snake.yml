@@ -1,19 +1,32 @@
-name: Generate contribution snake
+name: Update profile activity
 
 on:
   schedule:
-    - cron: "22 3 * * *"
+    - cron: "22 */6 * * *"
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/snake.yml
+      - .github/scripts/profile_activity.py
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: profile-activity
+
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Generate statistics and streak cards
+        run: python3 .github/scripts/profile_activity.py "$GITHUB_REPOSITORY_OWNER" dist
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Generate dark and light contribution animations
-        uses: Platane/snk/svg-only@v3
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
         with:
           github_user_name: SandrikPff
           outputs: |
@@ -21,10 +34,12 @@ jobs:
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#e5484d&color_dots=#0d1117,#2a1419,#67232b,#b73640,#e5484d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish animations to output branch
-        uses: crazy-max/ghaction-github-pages@v4
+      - name: Publish cards and animations to output branch
+        uses: crazy-max/ghaction-github-pages@df5cc2bfa78282ded844b354faee141f06b41865 # v4
         with:
           target_branch: output
           build_dir: dist
+          keep_history: true
+          allow_empty_commit: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
